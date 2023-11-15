@@ -1,4 +1,3 @@
-from pyspark.sql.types import StructType, StructField, IntegerType
 from pyspark.sql.functions import *
 from pyspark.sql import SparkSession
 from pyspark.sql.types import *
@@ -7,12 +6,11 @@ spark = SparkSession.builder.enableHiveSupport().master("yarn").getOrCreate()  #
 
 def spark_BFS(fr, to):
     schema = StructType([
-        StructField("id", StringType(), False),
-        StructField("to", StringType(), False),
-        StructField("from", StringType(), False)
+        StructField("from", StringType(), False),
+        StructField("to", StringType(), False)
     ])
 
-    forvard_edges = spark.read.csv('/data/twitter/twitter_sample_small.txt', sep="|", header=True, schema=schema) \
+    forvard_edges = spark.read.csv('/data/twitter/twitter_sample.txt', sep="\t", schema=schema) \
         .select('to', 'from').cache()
 
     dist_schema = StructType([
