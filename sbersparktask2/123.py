@@ -12,7 +12,7 @@ def spark_BFS(fr, to):
         StructField("from", StringType(), False)
     ])
 
-    forvard_edges = spark.read.csv('/data/twitter/twitter_sample.txt', sep="|", header=True, schema=schema) \
+    forvard_edges = spark.read.csv('/data/twitter/twitter_sample_small.txt', sep="|", header=True, schema=schema) \
         .select('to', 'from').cache()
 
     dist_schema = StructType([
