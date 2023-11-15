@@ -1,6 +1,7 @@
 from pyspark.sql.types import StructType, StructField, IntegerType
 from pyspark.sql.functions import *
 from pyspark.sql import SparkSession
+from pyspark.sql.types import *
 
 spark = SparkSession.builder.enableHiveSupport().master("yarn").getOrCreate()  # master('local[2]')
 
